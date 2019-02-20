@@ -1,5 +1,10 @@
 language: generic
 
 script:
-        - git clone https://github.com/apache/ignite.git ${TRAVIS_BUILD_DIR}/ignite
-        - ls -l ${TRAVIS_BUILD_DIR} 
+        - git clone https://github.com/apache/ignite.git ${TRAVIS_BUILD_DIR}/ignite-src
+        - cd ignite-src
+        - mvn clean install -DskipTests -Prelease
+        - IGNITE_BIN=`find . -name "apache-ignite*.zip" | head -1`
+        - cd -
+        - cp IGNITE_BIN ./ignite.zip
+        - pwd

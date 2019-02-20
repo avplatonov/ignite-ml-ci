@@ -6,5 +6,5 @@ script:
         - mvn --quiet clean install -DskipTests -Prelease
         - IGNITE_BIN=`find . -name "apache-ignite*.zip" | head -1`
         - cd -
-        - cp IGNITE_BIN ./ignite.zip
+        - cp $IGNITE_BIN ./ignite.zip
         - pwd

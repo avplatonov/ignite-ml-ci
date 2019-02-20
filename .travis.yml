@@ -3,3 +3,5 @@ before-script:
 
 language: generic
 
+script:
+        - bash -x -c 'echo "Hello world 2"'

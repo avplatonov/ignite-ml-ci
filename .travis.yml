@@ -1,10 +1,14 @@
 language: generic
 
+git:
+        depth: false
+
 script:
         - git clone https://github.com/apache/ignite.git ${TRAVIS_BUILD_DIR}/ignite-src
         - cd ignite-src
         - mvn --quiet clean install -DskipTests -Prelease
-        - IGNITE_BIN=`find . -name "apache-ignite*.zip" | head -1`
+        - IGNITE_BIN=`find $PWD -name "apache-ignite*.zip" | head -1`
         - cd -
-        - cp $IGNITE_BIN ./ignite.zip
-        - pwd
+        - mv $IGNITE_BIN ./ignite-bin.zip
+        - unzip ignite-bin.zip
+        - ls -l

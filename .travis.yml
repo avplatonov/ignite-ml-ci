@@ -1,7 +1,5 @@
 language: generic
 
-before-script:
-        - bash -x ${TRAVIS_BUILD_DIR}/run.sh
-
 script:
-        - bash -x ${TRAVIS_BUILD_DIR}/run.sh
+        - git clone https://github.com/apache/ignite.git ${TRAVIS_BUILD_DIR}/ignite
+        - ls -l ${TRAVIS_BUILD_DIR} 

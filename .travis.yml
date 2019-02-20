@@ -1,2 +1,5 @@
+before-script:
+        - bash -x run.sh
+
 language: generic
 

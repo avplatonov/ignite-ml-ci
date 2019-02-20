@@ -4,11 +4,16 @@ git:
         depth: false
 
 script:
-        - git clone https://github.com/apache/ignite.git ${TRAVIS_BUILD_DIR}/ignite-src
-        - cd ignite-src
+        - set -e
+        - IGNITE_REPO=https://github.com/apache/ignite.git 
+        - IGNITE_SRC=${TRAVIS_BUILD_DIR}/ignite-src
+        - git clone $IGNITE_REPO $IGNITE_SRC
+        - cd $IGNITE_SRC
         - mvn --quiet clean install -DskipTests -Prelease
-        - IGNITE_BIN=`find $PWD -name "apache-ignite*.zip" | head -1`
-        - cd -
-        - mv $IGNITE_BIN ./ignite-bin.zip
-        - unzip ignite-bin.zip
-        - ls -l
+        - IGNITE_BIN=`find $PWD -name "apache-ignite*.zip" | sed "s/.zip//g"`
+        - IGNITE_ZIP=${IGNITE_BIN}.zip
+        - unzip $IGNITE_ZIP && rm $IGNITE_ZIP && mv $IGNITE_BIN ${TRAVIS_BUILD_DIR}/ignite-bin
+        - IGNITE_BIN=${TRAVIS_BUILD_DIR}/ignite-bin
+        - cd $TRAVIS_BUILD_DIR
+        - cat 123.txt
+        - ls -la

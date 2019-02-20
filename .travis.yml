@@ -1,7 +1,7 @@
-before-script:
-        - bash -x run.sh
-
 language: generic
 
+before-script:
+        - bash -x ${TRAVIS_BUILD_DIR}/run.sh
+
 script:
-        - bash -x -c 'echo "Hello world 2"'
+        - bash -x ${TRAVIS_BUILD_DIR}/run.sh
